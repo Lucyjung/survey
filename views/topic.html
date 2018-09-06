@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Topic </title>
+    <link rel="stylesheet" type="text/css" href="css/survey-style.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" > 
+        <div class="panel panel-default" >
+            <div class="panel-heading"  style="background-color: rgb(180, 220, 250)">
+                <div class="row">                       
+                    <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addModal">Add </button>
+                </div>       
+            </div>
+            <div class="panel-body">   
+                <div class="row">  
+                    <table class="table">
+                        <thead>
+                            <th> Topic Name</th><th>Date </th><th> Action </th>
+                        </thead>
+                        <tbody>
+                            <% for (var i = 0; i < topics.length;  i++) { %>
+                            <tr>
+                                <td><a href="/survey/<%= topics[i].name %>"><%= topics[i].name %></a></td>
+                                <td><%= topics[i].createdAt %></td>
+                                <td><button type="button" class="btn btn-danger" onclick='deleteAction("<%= topics[i].name %>")'>Delete </button></td>
+                            </tr>    
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Add Topic</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                Topic Name <input type="text" id="newTopicName" value="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="buttonSave">Save </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+<script type='text/javascript' src="/js/topic.js"></script>
+</html>

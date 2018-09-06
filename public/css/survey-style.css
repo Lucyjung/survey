@@ -1,0 +1,80 @@
+
+.container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+
+#tab-head{
+  padding-top: 10px;
+  padding-bottom: 10px; 
+}
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background:  rgb(180, 220, 250);
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid  rgb(23, 83, 145);
+}
+
+
+.rb {
+    padding: 16px 0;
+    text-align: center;
+    background:rgb(255, 255, 255);
+    border-radius: .3em;
+  }
+  
+  .rb-tab {
+    display: inline-block;
+    position: relative;
+    width: 20%;
+  }
+  
+  .rb-txt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:rgb(0, 0, 0);
+  }
+  
+  .rb-spot {
+    position: absolute;
+    width: 30px;
+    height:30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 100%;
+    cursor: pointer;
+    transition: ease .5s;
+  }
+  
+  .rb-tab-active .rb-spot {
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(0, 0, 0);
+  }
+
+

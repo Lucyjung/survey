@@ -7,8 +7,10 @@ mongoose.connect('mongodb://10.164.232.31/survey', { useNewUrlParser: true })
 
 app.use(express.json()) // to support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })) // to support URL-encoded bodies
+app.use(express.static('public'))
+app.engine('html', require('ejs').renderFile)
+app.set('view engine', 'html')
 
-app.get('/', (req, res) => res.send('Hello World!')) // TODO: replace with frontend
 app.post('/topic/', async (req, res) => {
   if (req.body.name) {
     let result = await survey.addTopic(req.body.name)
@@ -20,7 +22,7 @@ app.post('/topic/', async (req, res) => {
 
 app.get('/topic/', async (req, res) => {
   let result = await survey.getTopic()
-  res.json(result)
+  res.render('topic', { topics: result })
 })
 
 app.get('/topic/:name', async (req, res) => {
@@ -35,6 +37,18 @@ app.put('/score/', async (req, res) => {
 app.delete('/topic/', async (req, res) => {
   let result = await survey.deleteTopic(req.body.name)
   res.send(result)
+})
+
+app.use('/survey/:topic', async (req, res) => {
+  let result = await survey.getTopic(req.params.topic)
+  res.render('index', {
+    title: req.params.topic,
+    detail: result
+  })
+})
+
+app.use('/', async (req, res) => {
+  res.send('Please select Topic')
 })
 
 app.listen(process.env.PORT || 1234, () => {

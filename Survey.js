@@ -45,7 +45,9 @@ module.exports = {
   updateScore: async (name, participant, score) => {
     let query = await getTopicByName(name)
     if (query.length === 1) {
-      let toUpdateScore = query[0].score
+      participant = participant.split('.').join('_')
+
+      let toUpdateScore = query[0].score || {}
       toUpdateScore[participant] = score
       await Topic.findOneAndUpdate({
         name: name
@@ -61,17 +63,11 @@ module.exports = {
   },
   deleteTopic: async (name) => {
     let query = await getTopicByName(name)
-    if (query.length === 1) {
-      await Topic.findOneAndUpdate({
-        name: name
-      }, {
-        status: false
-      })
+    if (query.length > 0) {
+      await Topic.updateMany({ name: name }, { status: false })
       return 'Delete Completed!'
-    } else if (query.length === 0) {
-      return 'Cannot Find Topic Name ' + name
     } else {
-      return 'Duplicate Name ' + name
+      return 'Cannot Find Topic Name ' + name
     }
   }
 }

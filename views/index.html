@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> <%= title %></title>
+    <link rel="stylesheet" type="text/css" href="/css/survey-style.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body>
+  
+
+    
+        <div class="container" > 
+           
+            <div class="panel panel-default" >
+                        <div class="panel-heading"  style="background-color: rgb(180, 220, 250)">
+
+                            <div class="row">
+                                <div class="col-sm-2" >
+                                    <img src="/img/logo.png" class="img-responsive"  alt="TRANSTRON (THAILAND) CO., LTD." width="152" height="118">
+                                </div>
+                                <div class="col-sm-10" >                          
+                                    <h4> แบบประเมินความพึงพอใจผู้เข้ารับการอบรม</h4>          
+                                </div>
+                            </div>       
+                        </div>
+                        <div class="panel-body">
+                              
+
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary" >
+                                        <span class="glyphicon glyphicon-pencil" > หัวข้อแบบประเมิน :
+                                    </button>
+                                 </div>
+                                 <div class="col-sm-10">
+                                    <h4 id="ptopic"><%= title %></h4>         
+                                 </div>
+                                 
+                            </div>
+                                
+                                
+                                
+                                
+                            <p> <b><ins>คำอธิบาย</ins></b> : แบบประเมินนี้มีทั้งหมด 3 ตอน ขอให้ผู้ตอบแบบประเมินตอบให้ครบทั้ง 3 ตอน เพื่อให้การดำเนินโครงการเป็นไปตามวัตถุประสงค์<br>และเพื่อเป็นประโยชน์ในการนำไปใช้ต่อไป</p>
+                            <p> <b><ins>ตอนที่ 1</ins></b> สถานภาพทั่วไป</p>
+                            <p> <em>คำชี้แจง  โปรดทำเครื่องหมาย  <i class="fa fa-check-square-o"> ลงในช่องว่าง</i> <i class="fa fa-square-o"> หน้าข้อความ</i></em></p>
+                            <div style="margin-bottom: 5px " class="row">
+                                <form  action="/action_page.php">     
+                                    <div class="col-sm-1"><label class="radio-inline"><input type="radio" name="optradio" value="M"> ชาย</label></div>
+                                    <div class="col-sm-1"><label class="radio-inline"><input type="radio" name="optradio" value="F"> หญิง</label></div>
+                                </form>
+
+                            
+                            </div>
+                            
+                            <p> <b><ins>ตอนที่ 2</ins></b> ประโยชน์ที่ได้รับจากการเข้าอบรมในครั้งนี้</p>
+                            <form>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" id="comment"   placeholder="Add comment..." ></textarea>
+                                </div>
+                            </form>
+                            <p> <b><ins>ตอนที่ 3</ins></b> ระดับความพึงพอใจ / ความรู้ความเข้าใจ / การนำไปใช้  ต่อการเข้าร่วมโคงการ </p>
+                            <p> <em>คำชี้แจง  โปรดทำเครื่องหมาย   ลงในช่องที่ตรงกับความพึงพอใจ / ความมรู้ความเข้าใจ / การนำไปใช้ ของท่านเพียงระดับเดียว</em></p>
+                        
+                            <div class="row" id="tab-head" style="background-color: rgb(180, 220, 250)">
+                                <div class="col-sm-6" ><b>ประเด็นความคิดเห็น</b></div>
+                                <div class="col-sm-6" ><b>ระดับความพึงพอใจ / ความรู้ความเข้าใจ /การนำความรู้ไปใช้</b></div>                                   
+                            </div>
+                            
+                            <div class="row">
+                                <div style="padding-top:10px;padding-bottom:5px"  class="col-sm-12" ><b>ประเมินผลเนื้อหาการอบรม</b></div>
+                            </div>
+
+                            <div class="row">
+                                <p class="col-sm-6">1.ความรู้ ความเข้าใจในเรื่องนี้ ก่อน การอบรม</p>
+                                    <div id="rb-1" class="rb">
+                                        <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">1</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="2">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">2</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="3">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">3</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="4">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">4</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="5">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">5</span>
+                                            </div>
+                                        </div>
+                                    </div>                   
+                            </div>     
+                            <div class="row">
+                                    <p class="col-sm-6">2.ความรู้ ความเข้าใจในเรื่องนี้ หลัง การอบรม</p>
+                                        <div id="rb-2" class="rb">
+                                            <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">1</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">2</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">3</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">4</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">5</span>
+                                                </div>
+                                            </div>
+                                        </div>                   
+                            </div>      
+                            <div class="row">
+                                        <p class="col-sm-6">3.สามารถนำความรู้ที่ได้ไปใช้ในการปฏิบัติงาน</p>
+                                            <div id="rb-3" class="rb">
+                                                <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">1</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">2</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">3</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">4</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">5</span>
+                                                    </div>
+                                                </div>
+                                            </div>                   
+                            </div>  
+                            <div class="row">
+                                <p class="col-sm-6">4. สามารถนำความรู้ไปเผยแพร่ / ถ่ายทอดได้</p>
+                                    <div id="rb-4" class="rb">
+                                    <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">1</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="2">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">2</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="3">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">3</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="4">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">4</span>
+                                            </div>
+                                        </div><div class="col-sm-1 rb-tab" data-value="5">
+                                            <div class="rb-spot">
+                                                <span class="rb-txt">5</span>
+                                            </div>
+                                        </div>
+                                    </div>                   
+                            </div>                            
+                            <div class="row">
+                                    <div style="padding-top:5px;padding-bottom:5px" class="col-sm-12" ><b>ประเมินผลวิทยากร</b></div>
+                                </div>
+            
+                                <div class="row">
+                                    <p class="col-sm-6">1.ความสามารถในการถ่ายทอดความรู้ความเข้าใจ</p>
+                                        <div id="rb-5" class="rb">
+                                            <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">1</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">2</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">3</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">4</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">5</span>
+                                                </div>
+                                            </div>
+                                        </div>                   
+                                </div>     
+                                <div class="row">
+                                        <p class="col-sm-6">2.ความสามารถในการถ่ายทอดเนื้อหาเป็นที่น่าสนใจ</p>
+                                            <div id="rb-6" class="rb">
+                                                <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">1</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">2</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">3</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">4</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">5</span>
+                                                    </div>
+                                                </div>
+                                            </div>                   
+                                </div>      
+                                <div class="row">
+                                            <p class="col-sm-6">3.ความครบถ้วนของเนื้อหาในการฝึกอบรม</p>
+                                                <div id="rb-7" class="rb">
+                                                    <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">1</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">2</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">3</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">4</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>                   
+                                </div>  
+                                <div class="row">
+                                    <p class="col-sm-6">4.การใช้เวลาให้เหมาะสมกับเนื้อหา</p>
+                                        <div id="rb-8" class="rb">
+                                        <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">1</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">2</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">3</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">4</span>
+                                                </div>
+                                            </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                <div class="rb-spot">
+                                                    <span class="rb-txt">5</span>
+                                                </div>
+                                            </div>
+                                        </div>                   
+                                </div> 
+                                <div class="row">
+                                        <p class="col-sm-6">5.การตอบคำถามของวิทยากร</p>
+                                            <div id="rb-9" class="rb">
+                                            <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">1</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">2</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">3</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">4</span>
+                                                    </div>
+                                                </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                    <div class="rb-spot">
+                                                        <span class="rb-txt">5</span>
+                                                    </div>
+                                                </div>
+                                            </div>                   
+                                    </div>      
+                                    <div class="row">
+                                            <div style="padding-top:5px;padding-bottom:5px" class="col-sm-12" ><b>ประเมินผลผู้จัดการอบรม</b></div>
+                                        </div>
+                    
+                                        <div class="row">
+                                            <p class="col-sm-6">1.ความพึงพอใจต่อสถานที่อบรม</p>
+                                                <div id="rb-10" class="rb">
+                                                    <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">1</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">2</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">3</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">4</span>
+                                                        </div>
+                                                    </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                        <div class="rb-spot">
+                                                            <span class="rb-txt">5</span>
+                                                        </div>
+                                                    </div>
+                                                </div>                   
+                                        </div>     
+                                        <div class="row">
+                                                <p class="col-sm-6">2.ระยะเวลาในการจัดอบรม</p>
+                                                    <div id="rb-11" class="rb">
+                                                        <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                            <div class="rb-spot">
+                                                                <span class="rb-txt">1</span>
+                                                            </div>
+                                                        </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                            <div class="rb-spot">
+                                                                <span class="rb-txt">2</span>
+                                                            </div>
+                                                        </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                            <div class="rb-spot">
+                                                                <span class="rb-txt">3</span>
+                                                            </div>
+                                                        </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                            <div class="rb-spot">
+                                                                <span class="rb-txt">4</span>
+                                                            </div>
+                                                        </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                            <div class="rb-spot">
+                                                                <span class="rb-txt">5</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>                   
+                                        </div>      
+                                        <div class="row">
+                                                    <p class="col-sm-6">3.ความพร้อมของอุปกรณ์</p>
+                                                        <div id="rb-12" class="rb">
+                                                            <div class="col-sm-1 rb-tab rb-tab-active" data-value="1">
+                                                                <div class="rb-spot">
+                                                                    <span class="rb-txt">1</span>
+                                                                </div>
+                                                            </div><div class="col-sm-1 rb-tab" data-value="2">
+                                                                <div class="rb-spot">
+                                                                    <span class="rb-txt">2</span>
+                                                                </div>
+                                                            </div><div class="col-sm-1 rb-tab" data-value="3">
+                                                                <div class="rb-spot">
+                                                                    <span class="rb-txt">3</span>
+                                                                </div>
+                                                            </div><div class="col-sm-1 rb-tab" data-value="4">
+                                                                <div class="rb-spot">
+                                                                    <span class="rb-txt">4</span>
+                                                                </div>
+                                                            </div><div class="col-sm-1 rb-tab" data-value="5">
+                                                                <div class="rb-spot">
+                                                                    <span class="rb-txt">5</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>                   
+                                        </div>                                             
+                                    
+                            <p> <b><ins>ตอนที่ 4</ins></b> ข้อเสนอแนะเพิ่มเติม</p>
+                            <form>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="5" id="comment2" placeholder="Add comment..." ></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="panel-footer" style="background-color: rgb(180, 220, 250)">
+
+                            <div class="button-box">
+                                <button  class="btn button-primary button trigger" >SUBMIT</button>
+                            </div>
+                        </div>
+            </div>
+        
+
+        </div>
+    
+ 
+
+</body>
+<script type='text/javascript' src="/js/survey_script.js"></script>
+</html>
