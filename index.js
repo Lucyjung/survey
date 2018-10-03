@@ -47,6 +47,14 @@ app.use('/survey/:topic', async (req, res) => {
   })
 })
 
+app.use('/summary/:topic', async (req, res) => {
+  let result = await survey.getSummary(req.params.topic)
+  res.render('summary', {
+    title: req.params.topic,
+    detail: result
+  })
+})
+
 app.use('/', async (req, res) => {
   res.send('Please select Topic')
 })

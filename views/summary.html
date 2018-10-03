@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Summary </title>
+    <link rel="stylesheet" type="text/css" href="css/survey-style.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" > 
+        <div class="panel panel-default" >
+            <div class="panel-body">   
+                <div class="row">  
+                    <h2><%= title %></h2>
+                    <table class="table">
+                        <thead>
+                            <th> Critiria </th><th> Score </th>
+                        </thead>
+                        <tbody>
+                            <tr></td><td> เนื้อหาการอบรม</td><td><%= detail.content %></td></tr>
+                            <tr><td> วิทยากร</td><td><%= detail.lecturer %></td></tr>
+                            <tr><td> ผู้จัดการอบรม</td><td><%= detail.venue %></td></tr>
+                            <tr><td> คะแนนเฉลี่ย</td><td><%= detail.total %></td></tr>
+                            <tr><td> ประโยชน์ที่ได้รับ</td><td>
+                                <% if (detail.merit) for (var i = 0; i < detail.merit.length;  i++) { %>
+                                    <%= detail.merit[i] %>
+                                    <br />
+                                <% } %>
+                            </td></tr>
+                            <tr><td> ข้อเสนอแนะ</td><td><p>
+                                <% if (detail.comment) for (var i = 0; i < detail.comment.length;  i++) { %>
+                                    <%= detail.comment[i] %>
+                                    <br />
+                                <% } %>
+                            </p></td></tr>
+                            <tr><td> จำนวนผู้เสนอความคิดเห็น </td><td><%= detail.count %></td></tr>
+                        </tbody>
+                    </table>
+                </div>  
+            </div>
+        </div>
+    </div>
+</body>
+</html>
