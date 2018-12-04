@@ -3,7 +3,7 @@ $('#buttonSave').click(function () {
   let data = {
     name: $('#newTopicName').val()
   }
-  var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  var format = /[!@#$%^&*()+\-=\[\]{};':"\\|,.<>\/?]+/
 
   if (format.test(data.name)) {
     alert('Invalid Name')
