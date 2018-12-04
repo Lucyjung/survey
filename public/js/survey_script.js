@@ -1,4 +1,4 @@
-
+/* global alert, $ */
 var survey = {} // Bidimensional array: [ [1,3], [2,4] ]
 var topic = ''
 var gender = ''
@@ -54,7 +54,6 @@ $(document).ready(function () {
       };
 
       getUserIP(function (ip) {
-        
         let data = {
           name: $('#ptopic').html(),
           participant: ip,
@@ -83,14 +82,13 @@ $(document).ready(function () {
 
 function getUserIP (onNewIP) { //  onNewIp - your listener function for new IPs
   // compatibility for firefox and chrome
-  var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection
-  var pc = new myPeerConnection({
+  var MyPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection
+  var pc = new MyPeerConnection({
     iceServers: []
   })
-  var noop = function() {};
-  var localIPs = {};
-  var ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g;
-  var key
+  var noop = function () {}
+  var localIPs = {}
+  var ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
 
   function iterateIP (ip) {
     if (!localIPs[ip]) onNewIP(ip)
@@ -112,9 +110,9 @@ function getUserIP (onNewIP) { //  onNewIp - your listener function for new IPs
     // An error occurred, so handle the failure to connect
   })
 
-  //listen for candidate events
+  // listen for candidate events
   pc.onicecandidate = function (ice) {
     if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return
     ice.candidate.candidate.match(ipRegex).forEach(iterateIP)
-  };
+  }
 }
