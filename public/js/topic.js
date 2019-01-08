@@ -8,6 +8,7 @@ $('#buttonSave').click(function () {
   if (format.test(data.name)) {
     alert('Invalid Name')
   } else {
+    data.name = data.name.replace(/\s+$/, '')
     $.ajax({
       type: 'POST',
       url: '/topic',
