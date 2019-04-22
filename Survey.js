@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const { Resolver } = require('dns')
+const resolver = new Resolver()
 
 var SurveySchema = new Schema({
   name: String,
@@ -45,8 +47,12 @@ module.exports = {
   updateScore: async (name, participant, score) => {
     let query = await getTopicByName(name)
     if (query.length === 1) {
-      participant = participant.split('.').join('_')
-
+      let participantName = await getHostNameByIP(participant)
+      if (participantName) {
+        participant = participantName
+      } else {
+        participant = participant.split('.').join('_')
+      }
       let toUpdateScore = query[0].score || {}
       toUpdateScore[participant] = score
       await Topic.findOneAndUpdate({
@@ -88,8 +94,20 @@ async function getTopicByName (name) {
   })
   return queries
 }
+function getHostNameByIP (ip) {
+  return new Promise(resolve => {
+    require('dns').reverse(ip, function (err, domains) {
+      if (err == null) {
+        let hostname = domains[0].split('.')[0]
+        resolve(hostname)
+      } else {
+        resolve(null)
+      }
+    })
+  })
+}
 // Magic Score Calculation by Pure (PT)
-function pureCalculation(scores) {
+function pureCalculation (scores) {
   /* eslint-disable camelcase */
   let userCount = 0
   let sum1_1 = 0
@@ -105,6 +123,7 @@ function pureCalculation(scores) {
   let sum3_3 = 0
   let comment1 = []
   let comment2 = []
+  let users = []
   for (let user in scores) {
     let survey = scores[user].survey
     sum1_1 += parseInt(survey[1]) - parseInt(survey[0])
@@ -124,8 +143,8 @@ function pureCalculation(scores) {
     if (scores[user].comment2 !== '') {
       comment2.push(scores[user].comment2)
     }
-    
     userCount++
+    users.push(user)
   }
   let ave1_1 = sum1_1 / userCount
   let ave1_2 = sum1_2 / userCount
@@ -152,7 +171,8 @@ function pureCalculation(scores) {
     total: totalScore,
     merit: comment1,
     comment: comment2,
-    count: userCount
+    count: userCount,
+    users: users
   }
   /* eslint-enable camelcase */
 

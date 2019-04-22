@@ -42,6 +42,12 @@
                                 <% } %>
                             </p></td></tr>
                             <tr><td> จำนวนผู้เสนอความคิดเห็น </td><td><%= detail.count %></td></tr>
+                            <tr><td> ผู้เสนอความคิดเห็น </td><td><p>
+                                <% if (detail.users) for (var i = 0; i < detail.users.length;  i++) { %>
+                                    <%= detail.users[i] %>
+                                    <br />
+                                <% } %>
+                            </p></td></tr>
                         </tbody>
                     </table>
                 </div>  
