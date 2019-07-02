@@ -4,6 +4,7 @@ var topic = ''
 var gender = ''
 var com1 = ''
 var com2 = ''
+var localIPs = {}
 
 $('#btn-edit').click(function () {
   $('#mtopic').hide()
@@ -54,27 +55,20 @@ $(document).ready(function () {
       };
 
       getUserIP(function (ip) {
-        let data = {
-          name: $('#ptopic').html(),
-          participant: ip,
-          score: {
-            comment1: com1,
-            comment2: com2,
-            gender: gender,
-            survey: survey
+        if (ip == ""){
+          let person = prompt("Sorry, We can't find your IP Address. Please enter your name or IP Address:", "");
+          if (person == null || person == "") {
+            return
+          } else {
+            ip = person
+            updateScore(ip)
           }
         }
-        $.ajax({
-          type: 'PUT',
-          url: '/score',
-          data: data,
-          error: function (error) {
-            alert(error)
-          },
-          success: function (data) {
-            alert(data)
-          }
-        })
+        else{
+          updateScore(ip)
+        }
+        
+        
       })
     }
   })
@@ -87,7 +81,7 @@ function getUserIP (onNewIP) { //  onNewIp - your listener function for new IPs
     iceServers: []
   })
   var noop = function () {}
-  var localIPs = {}
+  
   var ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g
 
   function iterateIP (ip) {
@@ -112,7 +106,38 @@ function getUserIP (onNewIP) { //  onNewIp - your listener function for new IPs
 
   // listen for candidate events
   pc.onicecandidate = function (ice) {
-    if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return
-    ice.candidate.candidate.match(ipRegex).forEach(iterateIP)
+    if (!ice || !ice.candidate || !ice.candidate.candidate ) {
+      return
+    }
+    else if (!ice.candidate.candidate.match(ipRegex)){
+      iterateIP("")
+    }
+    else{
+      ice.candidate.candidate.match(ipRegex).forEach(iterateIP)
+    }
+    
   }
+}
+function updateScore(ip){
+  let data = {
+    name: $('#ptopic').html(),
+    participant: ip,
+    score: {
+      comment1: com1,
+      comment2: com2,
+      gender: gender,
+      survey: survey
+    }
+  }
+  $.ajax({
+    type: 'PUT',
+    url: '/score',
+    data: data,
+    error: function (error) {
+      alert(error)
+    },
+    success: function (data) {
+      alert(data)
+    }
+  })
 }
